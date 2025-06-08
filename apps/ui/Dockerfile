@@ -22,6 +22,9 @@ RUN npm run build
 FROM base AS runner
 WORKDIR /app
 
+# Install curl for health checks
+RUN apk add --no-cache curl
+
 ENV NODE_ENV production
 
 RUN addgroup --system --gid 1001 nodejs

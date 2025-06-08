@@ -10,7 +10,7 @@ WORKDIR /app
 COPY package*.json ./
 COPY tsconfig.json ./
 
-# Install dependencies (including dev dependencies for build)
+# Install dependencies
 RUN npm ci && npm cache clean --force
 
 # Copy source code
@@ -30,7 +30,7 @@ RUN adduser -S nodejs -u 1001
 USER nodejs
 
 # Expose port
-EXPOSE 4000
+EXPOSE 5000
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
