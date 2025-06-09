@@ -1,9 +1,9 @@
-import { Server as SocketIOServer } from 'socket.io';
+import { Server as SocketIOServer, Socket } from 'socket.io';
 import { Server } from 'http';
 import jwt from 'jsonwebtoken';
 import Redis from 'ioredis';
 import { logger } from '../utils/logger';
-import config from '../config';
+import { config } from '../config';
 
 interface AuthenticatedSocket extends Socket {
   userId?: string;
@@ -17,11 +17,11 @@ class WebSocketManager {
   private userSockets: Map<string, string> = new Map(); // socketId -> userId
 
   constructor(server: Server) {
-    this.redis = new Redis(config.redis.url);
+    this.redis = new Redis(config.REDIS_URL);
     
     this.io = new SocketIOServer(server, {
       cors: {
-        origin: config.client.url,
+        origin: config.CLIENT_URL,
         methods: ['GET', 'POST'],
         credentials: true
       },
@@ -36,7 +36,7 @@ class WebSocketManager {
 
   private setupMiddleware() {
     // Authentication middleware
-    this.io.use(async (socket: any, next) => {
+    this.io.use(async (socket: AuthenticatedSocket, next) => {
       try {
         const token = socket.handshake.auth.token || socket.handshake.headers.authorization?.replace('Bearer ', '');
         
@@ -44,7 +44,7 @@ class WebSocketManager {
           return next(new Error('Authentication required'));
         }
 
-        const decoded = jwt.verify(token, config.jwt.secret) as any;
+        const decoded = jwt.verify(token, config.JWT_SECRET) as any;
         
         // You would typically fetch the full user object from the database here
         socket.userId = decoded.userId;

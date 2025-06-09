@@ -1,6 +1,6 @@
 import express from 'express';
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
+import jwt, { SignOptions } from 'jsonwebtoken';
 import { v4 as uuidv4 } from 'uuid';
 import Joi from 'joi';
 
@@ -234,14 +234,14 @@ router.post('/login', async (req, res) => {
         email: user.email,
         role: user.role
       },
-      config.JWT_SECRET,
-      { expiresIn: config.JWT_EXPIRES_IN }
+      config.JWT_SECRET || 'default-secret',
+      { expiresIn: String(config.JWT_EXPIRES_IN || '7d') }
     );
 
     // Generate refresh token
     const refreshToken = jwt.sign(
       { id: user.id },
-      config.REFRESH_TOKEN_SECRET,
+      config.REFRESH_TOKEN_SECRET || 'default-refresh-secret',
       { expiresIn: '30d' }
     );
 
@@ -399,8 +399,8 @@ router.post('/refresh', async (req, res) => {
         email: user.email,
         role: user.role
       },
-      config.JWT_SECRET,
-      { expiresIn: config.JWT_EXPIRES_IN }
+      config.JWT_SECRET || 'default-secret',
+      { expiresIn: String(config.JWT_EXPIRES_IN || '7d') }
     );
 
     res.json({

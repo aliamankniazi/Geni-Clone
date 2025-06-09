@@ -79,13 +79,12 @@ async function startServer() {
   const apolloServer = new ApolloServer({
     typeDefs,
     resolvers,
-    context: ({ req }) => ({ user: req.user }),
-    introspection: config.NODE_ENV !== 'production',
-    playground: config.NODE_ENV !== 'production'
+    context: ({ req }) => ({ user: (req as any).user }),
+    introspection: config.NODE_ENV !== 'production'
   });
 
   await apolloServer.start();
-  apolloServer.applyMiddleware({ app, path: '/graphql' });
+  apolloServer.applyMiddleware({ app: app as any, path: '/graphql' });
 
   // Swagger Documentation
   const swaggerOptions = {

@@ -11,6 +11,7 @@ export const config = {
   CORS_ORIGINS: process.env.CORS_ORIGINS?.split(',') || [],
   
   // Database
+  DATABASE_URL: process.env.DATABASE_URL || '',
   NEO4J_URI: process.env.NEO4J_URI || '',
   NEO4J_USERNAME: process.env.NEO4J_USERNAME || 'neo4j',
   NEO4J_PASSWORD: process.env.NEO4J_PASSWORD || '',
