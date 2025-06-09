@@ -56,7 +56,7 @@ export function useWebSocket(options: UseWebSocketOptions = {}) {
 
     setState(prev => ({ ...prev, connectionStatus: 'connecting' }));
 
-    const socket = io(process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000', {
+    const socket = io(process.env.NEXT_PUBLIC_API_URL || '', {
       auth: { token },
       transports: ['websocket', 'polling'],
       reconnection,

@@ -8,15 +8,15 @@ export const config = {
   PORT: parseInt(process.env.PORT || '4000'),
   
   // CORS
-  CORS_ORIGINS: process.env.CORS_ORIGINS?.split(',') || ['http://localhost:3000'],
+  CORS_ORIGINS: process.env.CORS_ORIGINS?.split(',') || [],
   
   // Database
-  NEO4J_URI: process.env.NEO4J_URI || 'bolt://localhost:7687',
+  NEO4J_URI: process.env.NEO4J_URI || '',
   NEO4J_USERNAME: process.env.NEO4J_USERNAME || 'neo4j',
-  NEO4J_PASSWORD: process.env.NEO4J_PASSWORD || 'password',
+  NEO4J_PASSWORD: process.env.NEO4J_PASSWORD || '',
   
   // Redis
-  REDIS_URL: process.env.REDIS_URL || 'redis://localhost:6379',
+  REDIS_URL: process.env.REDIS_URL || '',
   
   // Authentication
   JWT_SECRET: process.env.JWT_SECRET || 'your-super-secret-jwt-key',
@@ -61,7 +61,7 @@ export const config = {
   MAX_PAGE_SIZE: parseInt(process.env.MAX_PAGE_SIZE || '100'),
   
   // Background jobs
-  JOB_QUEUE_REDIS_URL: process.env.JOB_QUEUE_REDIS_URL || process.env.REDIS_URL || 'redis://localhost:6379',
+  JOB_QUEUE_REDIS_URL: process.env.JOB_QUEUE_REDIS_URL || process.env.REDIS_URL || '',
   
   // Logging
   LOG_LEVEL: process.env.LOG_LEVEL || 'info',
@@ -71,8 +71,8 @@ export const config = {
   BCRYPT_SALT_ROUNDS: parseInt(process.env.BCRYPT_SALT_ROUNDS || '12'),
   
   // Client URLs
-  CLIENT_URL: process.env.CLIENT_URL || 'http://localhost:3000',
-  API_BASE_URL: process.env.API_BASE_URL || 'http://localhost:4000',
+  CLIENT_URL: process.env.CLIENT_URL || '',
+  API_BASE_URL: process.env.API_BASE_URL || '',
   
   // Feature flags
   ENABLE_GRAPHQL: process.env.ENABLE_GRAPHQL !== 'false',

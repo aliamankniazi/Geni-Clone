@@ -1,12 +1,12 @@
 import request from 'supertest';
 import express from 'express';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import authRoutes from '../auth';
 import { createMockUser, createMockJWT } from '../../test/setup';
 
 // Mock bcrypt
-jest.mock('bcrypt', () => ({
+jest.mock('bcryptjs', () => ({
   hash: jest.fn(),
   compare: jest.fn(),
 }));
