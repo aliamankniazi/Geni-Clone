@@ -235,14 +235,14 @@ router.post('/login', async (req, res) => {
         role: user.role
       },
       config.JWT_SECRET || 'default-secret',
-      { expiresIn: String(config.JWT_EXPIRES_IN || '7d') }
+      { expiresIn: config.JWT_EXPIRES_IN || '7d' } as SignOptions
     );
 
     // Generate refresh token
     const refreshToken = jwt.sign(
       { id: user.id },
       config.REFRESH_TOKEN_SECRET || 'default-refresh-secret',
-      { expiresIn: '30d' }
+      { expiresIn: '30d' } as SignOptions
     );
 
     logger.info(`User logged in: ${email}`);
@@ -400,7 +400,7 @@ router.post('/refresh', async (req, res) => {
         role: user.role
       },
       config.JWT_SECRET || 'default-secret',
-      { expiresIn: String(config.JWT_EXPIRES_IN || '7d') }
+      { expiresIn: config.JWT_EXPIRES_IN || '7d' } as SignOptions
     );
 
     res.json({

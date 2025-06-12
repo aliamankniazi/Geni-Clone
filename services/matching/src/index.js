@@ -1,10 +1,9 @@
-import * as amqp from 'amqplib';
-import { Driver } from 'neo4j-driver';
-import neo4j from 'neo4j-driver';
-import { createClient, RedisClientType } from 'redis';
-import winston from 'winston';
-import { SmartMatcher } from './matcher';
-import { config } from './config';
+const amqp = require('amqplib');
+const neo4j = require('neo4j-driver');
+const { createClient } = require('redis');
+const winston = require('winston');
+const { SmartMatcher } = require('./matcher');
+const { config } = require('./config');
 
 // Logger setup
 const logger = winston.createLogger({
@@ -20,12 +19,8 @@ const logger = winston.createLogger({
 });
 
 class MatchingService {
-  private rabbitConnection: amqp.Connection | null = null;
-  private redisClient: RedisClientType;
-  private neo4jDriver: Driver;
-  private matcher: SmartMatcher;
-
   constructor() {
+    this.rabbitConnection = null;
     this.neo4jDriver = neo4j.driver(
       config.NEO4J_URI,
       neo4j.auth.basic(config.NEO4J_USERNAME, config.NEO4J_PASSWORD)
@@ -61,7 +56,7 @@ class MatchingService {
     }
   }
 
-  private async setupConsumers(channel: amqp.Channel) {
+  async setupConsumers(channel) {
     // Listen for new person creation
     channel.consume('person.created', async (msg) => {
       if (msg) {
@@ -111,7 +106,7 @@ class MatchingService {
     });
   }
 
-  private async processPerson(personData: any) {
+  async processPerson(personData) {
     try {
       // Find potential matches for this person
       const matches = await this.matcher.findMatches(personData);
@@ -131,7 +126,7 @@ class MatchingService {
     }
   }
 
-  private async processMatchingRequest(request: any) {
+  async processMatchingRequest(request) {
     try {
       const { personId, targetPersonId, userId } = request;
       
@@ -162,7 +157,7 @@ class MatchingService {
     }
   }
 
-  private async storeMatches(personId: string, matches: any[]) {
+  async storeMatches(personId, matches) {
     const session = this.neo4jDriver.session();
     
     try {
@@ -186,7 +181,7 @@ class MatchingService {
     }
   }
 
-  private async notifyMatches(personId: string, matches: any[]) {
+  async notifyMatches(personId, matches) {
     if (!this.rabbitConnection) return;
     
     const channel = await this.rabbitConnection.createChannel();
@@ -211,7 +206,7 @@ class MatchingService {
     await channel.close();
   }
 
-  private async notifySpecificMatch(userId: string, match: any) {
+  async notifySpecificMatch(userId, match) {
     if (!this.rabbitConnection) return;
     
     const channel = await this.rabbitConnection.createChannel();

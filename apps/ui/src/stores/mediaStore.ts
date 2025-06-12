@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import axios from 'axios';
-import { Media } from '@geni-clone/shared';
+import { Media } from '@/types/media';
 
 interface MediaState {
   media: Media[];

@@ -1,6 +1,7 @@
 import { create } from 'zustand';
+import { Person } from '@/types/person';
+import { Relationship } from '@/types/relationship';
 import axios from 'axios';
-import { Person, Relationship } from '@geni-clone/shared';
 
 interface TreeState {
   familyTreeData: any | null;

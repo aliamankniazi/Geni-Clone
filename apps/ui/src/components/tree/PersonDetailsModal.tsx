@@ -1,7 +1,8 @@
+'use client';
 import { useState, useEffect } from 'react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { useForm } from 'react-hook-form';
-import { Person } from '@geni-clone/shared';
+import { Person } from '@/types/person';
 import { useTreeStore } from '@/stores/treeStore';
 import toast from 'react-hot-toast';
 

@@ -1,7 +1,7 @@
-import { memo } from 'react';
+import React, { memo } from 'react';
 import { Handle, Position } from 'reactflow';
 import { UserIcon, PlusIcon, PencilIcon } from '@heroicons/react/24/outline';
-import { Person } from '@geni-clone/shared';
+import { Person } from '@/types/person';
 
 interface PersonNodeProps {
   data: {
@@ -127,12 +127,12 @@ export const PersonNode = memo(({ data, selected }: PersonNodeProps) => {
         <div className="mt-3 flex items-center justify-between text-xs text-gray-500">
           <span>ID: {person.id.slice(-6)}</span>
           <div className="flex items-center space-x-2">
-            {person.mediaCount > 0 && (
+            {person.mediaCount && person.mediaCount > 0 && (
               <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
                 📷 {person.mediaCount}
               </span>
             )}
-            {person.sourceCount > 0 && (
+            {person.sourceCount && person.sourceCount > 0 && (
               <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full">
                 📄 {person.sourceCount}
               </span>

@@ -1,6 +1,6 @@
 FROM node:18-alpine
 
-# Install dumb-init for proper signal handling
+# Add dumb-init for proper signal handling
 RUN apk add --no-cache dumb-init
 
 # Create app directory
@@ -10,17 +10,14 @@ WORKDIR /app
 COPY package*.json ./
 COPY tsconfig.json ./
 
-# Install dependencies (including dev dependencies for build)
-RUN npm ci && npm cache clean --force
+# Install dependencies
+RUN npm install && npm cache clean --force
 
 # Copy source code
 COPY . .
 
-# Build TypeScript
+# Build TypeScript code
 RUN npm run build
-
-# Remove dev dependencies after build
-RUN npm prune --production
 
 # Create non-root user
 RUN addgroup -g 1001 -S nodejs
@@ -36,5 +33,6 @@ EXPOSE 4000
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
   CMD node src/health-check.js
 
-# Start application
-CMD ["dumb-init", "node", "dist/index.js"] 
+# Start the service with dumb-init
+ENTRYPOINT ["dumb-init", "--"]
+CMD ["npm", "start"] 

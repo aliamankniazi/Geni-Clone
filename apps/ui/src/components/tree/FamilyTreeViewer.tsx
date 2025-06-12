@@ -13,7 +13,8 @@ import ReactFlow, {
   Background,
   Position,
   MarkerType,
-  useReactFlow
+  useReactFlow,
+  BackgroundVariant
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 
@@ -179,10 +180,10 @@ export function FamilyTreeViewer({ rootPersonId, className = '' }: FamilyTreeVie
     return { nodes, edges };
   };
 
-  const handleAddRelative = async (personId: string, relationship: string) => {
+  const handleAddRelative = (nodeId: string, relationship: string) => {
     try {
       // This would open a modal to add a new person
-      toast.info(`Adding ${relationship} - feature coming soon!`);
+      toast(`Adding ${relationship} - feature coming soon!`, { icon: 'ℹ️' });
     } catch (error) {
       toast.error('Failed to add relative');
     }
@@ -265,9 +266,9 @@ export function FamilyTreeViewer({ rootPersonId, className = '' }: FamilyTreeVie
           }}
         />
         
-        <Background 
-          variant="dots" 
-          gap={20} 
+        <Background
+          variant={BackgroundVariant.Dots}
+          gap={20}
           size={1}
           color="#e5e7eb"
         />

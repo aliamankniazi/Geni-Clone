@@ -133,7 +133,7 @@ export function useWebSocket(options: UseWebSocketOptions = {}) {
       }));
       
       if (field) {
-        toast.info(`${user.firstName || user.username} is editing ${field}`, { duration: 2000 });
+        toast(`${user.firstName || user.username} is editing ${field}`, { icon: 'ℹ️', duration: 2000 });
       }
     });
 
@@ -169,7 +169,7 @@ export function useWebSocket(options: UseWebSocketOptions = {}) {
       });
       window.dispatchEvent(event);
       
-      toast.info(`Family tree structure updated`, { duration: 3000 });
+      toast(`Family tree structure updated`, { icon: 'ℹ️', duration: 3000 });
     });
 
     socket.on('media-upload-progress', ({ personId, progress, fileName, userId }: any) => {

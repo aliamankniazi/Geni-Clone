@@ -8,7 +8,7 @@ import {
   DocumentTextIcon, 
   GlobeAmericasIcon,
   BeakerIcon,
-  SearchIcon,
+  MagnifyingGlassIcon,
   ChevronRightIcon,
   PlayIcon
 } from '@heroicons/react/24/outline';
@@ -47,7 +47,7 @@ const features = [
   {
     name: 'Smart Matching',
     description: 'Our AI-powered matching system automatically suggests potential family connections and duplicate records.',
-    icon: SearchIcon,
+    icon: MagnifyingGlassIcon,
     color: 'text-yellow-600',
   },
 ];
