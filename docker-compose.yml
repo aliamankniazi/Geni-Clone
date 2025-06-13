@@ -4,7 +4,7 @@ services:
   # Neo4j Database
   neo4j:
     image: neo4j:5.11
-    container_name: geni-neo4j
+    container_name: niazi-neo4j
     ports:
       - "7474:7474"
       - "7687:7687"
@@ -19,38 +19,39 @@ services:
       - neo4j_import:/var/lib/neo4j/import
       - neo4j_plugins:/plugins
     networks:
-      - geni-network
+      - niazi-network
 
   # Redis Cache
   redis:
     image: redis:7-alpine
-    container_name: geni-redis
+    container_name: niazi-redis
     ports:
       - "6379:6379"
     volumes:
       - redis_data:/data
     networks:
-      - geni-network
+      - niazi-network
 
-  # PostgreSQL (for user data and metadata)
-  postgres:
-    image: postgres:15-alpine
-    container_name: geni-postgres
+  # MySQL (for user data and metadata)
+  mysql:
+    image: mysql:8.0
+    container_name: niazi-mysql
     ports:
-      - "5432:5432"
+      - "3306:3306"
     environment:
-      POSTGRES_DB: geni_clone
-      POSTGRES_USER: geni_user
-      POSTGRES_PASSWORD: geni_password
+      MYSQL_DATABASE: niazi_tribe
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_USER: niazi_user
+      MYSQL_PASSWORD: niazi_password
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - mysql_data:/var/lib/mysql
     networks:
-      - geni-network
+      - niazi-network
 
   # MinIO S3-compatible storage
   minio:
     image: minio/minio:latest
-    container_name: geni-minio
+    container_name: niazi-minio
     ports:
       - "9000:9000"
       - "9001:9001"
@@ -61,60 +62,59 @@ services:
     volumes:
       - minio_data:/data
     networks:
-      - geni-network
+      - niazi-network
 
   # RabbitMQ for message queuing
   rabbitmq:
     image: rabbitmq:3-management-alpine
-    container_name: geni-rabbitmq
+    container_name: niazi-rabbitmq
     ports:
       - "5672:5672"
       - "15672:15672"
     environment:
-      RABBITMQ_DEFAULT_USER: geni
-      RABBITMQ_DEFAULT_PASS: geni_password
+      RABBITMQ_DEFAULT_USER: niazi
+      RABBITMQ_DEFAULT_PASS: niazi_password
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
     networks:
-      - geni-network
+      - niazi-network
 
   # API Service
   api:
     build:
       context: ./apps/api
       dockerfile: Dockerfile
-    container_name: geni-api
+    container_name: niazi-api
     ports:
       - "4000:4000"
     environment:
       NODE_ENV: development
       PORT: 4000
-      DATABASE_URL: postgresql://geni_user:geni_password@postgres:5432/geni_clone
       NEO4J_URI: bolt://neo4j:7687
       NEO4J_USERNAME: neo4j
       NEO4J_PASSWORD: password
       REDIS_URL: redis://redis:6379
-      POSTGRES_HOST: postgres
-      POSTGRES_PORT: 5432
-      POSTGRES_DB: geni_clone
-      POSTGRES_USER: geni_user
-      POSTGRES_PASSWORD: geni_password
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_DATABASE: niazi_tribe
+      MYSQL_USER: niazi_user
+      MYSQL_PASSWORD: niazi_password
       AWS_ENDPOINT: http://minio:9000
       AWS_ACCESS_KEY_ID: minioadmin
       AWS_SECRET_ACCESS_KEY: minioadmin123
-      S3_BUCKET_NAME: geni-media
-      RABBITMQ_URL: amqp://geni:geni_password@rabbitmq:5672
+      S3_BUCKET_NAME: niazi-media
+      RABBITMQ_URL: amqp://niazi:niazi_password@rabbitmq:5672
     volumes:
       - ./apps/api:/app
       - /app/node_modules
     depends_on:
       - neo4j
       - redis
-      - postgres
+      - mysql
       - minio
       - rabbitmq
     networks:
-      - geni-network
+      - niazi-network
     restart: unless-stopped
 
   # UI Service
@@ -122,7 +122,7 @@ services:
     build:
       context: ./apps/ui
       dockerfile: Dockerfile
-    container_name: geni-ui
+    container_name: niazi-ui
     ports:
       - "3000:3000"
     environment:
@@ -134,7 +134,7 @@ services:
     depends_on:
       - api
     networks:
-      - geni-network
+      - niazi-network
     restart: unless-stopped
 
   # Matching Service
@@ -142,14 +142,14 @@ services:
     build:
       context: ./services/matching
       dockerfile: Dockerfile
-    container_name: geni-matching
+    container_name: niazi-matching
     environment:
       NODE_ENV: development
       REDIS_URL: redis://redis:6379
       NEO4J_URI: bolt://neo4j:7687
       NEO4J_USERNAME: neo4j
       NEO4J_PASSWORD: password
-      RABBITMQ_URL: amqp://geni:geni_password@rabbitmq:5672
+      RABBITMQ_URL: amqp://niazi:niazi_password@rabbitmq:5672
     volumes:
       - ./services/matching:/app
       - /app/node_modules
@@ -158,7 +158,7 @@ services:
       - redis
       - rabbitmq
     networks:
-      - geni-network
+      - niazi-network
     restart: unless-stopped
 
   # GEDCOM Service
@@ -166,7 +166,7 @@ services:
     build:
       context: ./services/gedcom
       dockerfile: Dockerfile
-    container_name: geni-gedcom
+    container_name: niazi-gedcom
     ports:
       - "5000:5000"
     environment:
@@ -176,7 +176,7 @@ services:
       NEO4J_URI: bolt://neo4j:7687
       NEO4J_USERNAME: neo4j
       NEO4J_PASSWORD: password
-      RABBITMQ_URL: amqp://geni:geni_password@rabbitmq:5672
+      RABBITMQ_URL: amqp://niazi:niazi_password@rabbitmq:5672
     volumes:
       - ./services/gedcom:/app
       - /app/node_modules
@@ -185,7 +185,7 @@ services:
       - redis
       - rabbitmq
     networks:
-      - geni-network
+      - niazi-network
     restart: unless-stopped
 
 volumes:
@@ -194,10 +194,10 @@ volumes:
   neo4j_import:
   neo4j_plugins:
   redis_data:
-  postgres_data:
+  mysql_data:
   minio_data:
   rabbitmq_data:
 
 networks:
-  geni-network:
+  niazi-network:
     driver: bridge 

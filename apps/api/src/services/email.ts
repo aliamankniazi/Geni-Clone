@@ -59,7 +59,7 @@ export const sendVerificationEmail = async (email: string, token: string): Promi
     to: email,
     subject: 'Verify your email address',
     html: `
-      <h1>Welcome to Geni Clone!</h1>
+      <h1>Welcome to Niazi Tribe!</h1>
       <p>Please click the link below to verify your email address:</p>
       <a href="${verificationUrl}">Verify Email</a>
       <p>Or copy and paste this URL into your browser:</p>

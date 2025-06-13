@@ -1,6 +1,6 @@
 # Deployment Fixes Applied
 
-This document summarizes all the deployment issues that were identified and fixed in the Geni Clone project.
+This document summarizes all the deployment issues that were identified and fixed in the Niazi Tribe project.
 
 ## Issues Fixed
 

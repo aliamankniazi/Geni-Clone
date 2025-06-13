@@ -1,7 +1,7 @@
 {
-  "name": "@geni/gedcom-service",
+  "name": "@niazi/gedcom-service",
   "version": "1.0.0",
-  "description": "Geni Clone GEDCOM Processing Service",
+  "description": "Niazi Tribe GEDCOM Processing Service",
   "main": "dist/index.js",
   "scripts": {
     "dev": "nodemon src/index.ts",

@@ -1,4 +1,4 @@
-# Geni Clone Deployment Fix Script (PowerShell)
+# Niazi Tribe Deployment Fix Script (PowerShell)
 # This script fixes common deployment issues
 
 param(
@@ -31,7 +31,7 @@ function Write-Warning {
     Write-Host "⚠ $Message" -ForegroundColor $Yellow
 }
 
-Write-Log "🔧 Starting Geni Clone Deployment Fix..."
+Write-Log "🔧 Starting Niazi Tribe Deployment Fix..."
 
 # Check if Docker is running
 try {

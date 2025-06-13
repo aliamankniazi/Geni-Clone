@@ -1,7 +1,7 @@
 {
-  "name": "@geni/ui",
+  "name": "@niazi/ui",
   "version": "1.0.0",
-  "description": "Geni Clone Frontend Application",
+  "description": "Niazi Tribe Frontend Application",
   "private": true,
   "scripts": {
     "dev": "next dev -p 3000",
@@ -44,7 +44,6 @@
     "date-fns": "^2.30.0",
     "lodash": "^4.17.21",
     "react-image-gallery": "^1.2.12",
-    "react-pdf": "^7.3.3",
     "@tailwindcss/forms": "^0.5.4",
     "@tailwindcss/typography": "^0.5.9",
     "framer-motion": "^10.12.18"

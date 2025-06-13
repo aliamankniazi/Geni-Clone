@@ -19,7 +19,7 @@ describe('AuthLayout', () => {
     
     expect(screen.getByText('Test Title')).toBeInTheDocument()
     expect(screen.getByText('Test Content')).toBeInTheDocument()
-    expect(screen.getByText('Geni Clone')).toBeInTheDocument()
+    expect(screen.getByText('Niazi Tribe')).toBeInTheDocument()
   })
 
   it('renders with subtitle when provided', () => {
@@ -41,7 +41,7 @@ describe('AuthLayout', () => {
     
     const logoLink = screen.getByRole('link')
     expect(logoLink).toHaveAttribute('href', '/')
-    expect(logoLink).toContainElement(screen.getByText('Geni Clone'))
+    expect(logoLink).toContainElement(screen.getByText('Niazi Tribe'))
   })
 
   it('has proper CSS classes for styling', () => {
@@ -72,7 +72,7 @@ describe('AuthLayout', () => {
     const logoHeading = screen.getByRole('heading', { level: 1 })
     const titleHeading = screen.getByRole('heading', { level: 2 })
     
-    expect(logoHeading).toHaveTextContent('Geni Clone')
+    expect(logoHeading).toHaveTextContent('Niazi Tribe')
     expect(titleHeading).toHaveTextContent('Test Title')
   })
 

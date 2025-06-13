@@ -1,11 +1,12 @@
 {
-  "name": "@geni/matching-service",
+  "name": "@niazi/matching-service",
   "version": "1.0.0",
   "description": "Smart matching service for genealogy records",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "build": "echo 'No build required for JavaScript service'"
   },
   "dependencies": {
     "amqplib": "^0.10.3",

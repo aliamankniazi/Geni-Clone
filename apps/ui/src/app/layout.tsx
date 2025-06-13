@@ -6,7 +6,7 @@ import { Toaster } from 'react-hot-toast';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Geni Clone - Collaborative Family Tree Platform',
+  title: 'Niazi Tribe - Collaborative Family Tree Platform',
   description: 'Build and explore your family history collaboratively with advanced genealogy tools.',
   keywords: 'genealogy, family tree, ancestry, DNA, collaboration',
 };

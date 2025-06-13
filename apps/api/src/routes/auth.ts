@@ -113,9 +113,9 @@ router.post('/register', async (req, res) => {
     const verificationUrl = `${config.CLIENT_URL}/verify-email?token=${verificationToken}`;
     await sendEmail({
       to: email,
-      subject: 'Verify your Geni Clone account',
+      subject: 'Verify your Niazi Tribe account',
       html: `
-        <h1>Welcome to Geni Clone!</h1>
+        <h1>Welcome to Niazi Tribe!</h1>
         <p>Hi ${firstName},</p>
         <p>Thank you for registering. Please click the link below to verify your email address:</p>
         <a href="${verificationUrl}" style="background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Verify Email</a>

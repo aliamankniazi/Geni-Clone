@@ -29,6 +29,7 @@ import { resolvers } from './graphql/resolvers';
 
 // Database
 import { connectDatabase } from './database/connection';
+import { initializeDatabase, isDatabaseInitialized } from './database/init';
 
 async function startServer() {
   const app = express();
@@ -91,7 +92,7 @@ async function startServer() {
     definition: {
       openapi: '3.0.0',
       info: {
-        title: 'Geni Clone API',
+        title: 'Niazi Tribe API',
         version: '1.0.0',
         description: 'REST API for the collaborative genealogy platform'
       },
@@ -122,6 +123,13 @@ async function startServer() {
 
   // Connect to database
   await connectDatabase();
+  
+  // Initialize database schema if needed
+  const isInitialized = await isDatabaseInitialized();
+  if (!isInitialized) {
+    logger.info('Database not initialized, running initialization...');
+    await initializeDatabase();
+  }
 
   // Start server
   const server = app.listen(config.PORT, () => {

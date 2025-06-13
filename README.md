@@ -1,4 +1,4 @@
-# Geni Clone - Collaborative World Family-Tree Platform
+# Niazi Tribe - Collaborative World Family-Tree Platform
 
 A modern, scalable genealogy platform that enables users to collaboratively build a unified world family tree with advanced features like smart matching, DNA integration, and GEDCOM import/export.
 
@@ -48,7 +48,7 @@ This is a monorepo containing:
 1. **Clone and setup**
    ```bash
    git clone <repository-url>
-   cd geni-clone
+   cd niazi-tribe
    npm run setup
    ```
 
@@ -69,7 +69,7 @@ This is a monorepo containing:
 ## 📁 Project Structure
 
 ```
-geni-clone/
+niazi-tribe/
 ├── apps/
 │   ├── api/                 # Express API server
 │   └── ui/                  # Next.js frontend

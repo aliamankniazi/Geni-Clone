@@ -69,7 +69,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
             <div className="flex items-center">
-              <h1 className="text-2xl font-bold text-gradient">Geni Clone</h1>
+              <h1 className="text-2xl font-bold text-gradient">Niazi Tribe</h1>
             </div>
             <nav className="hidden md:flex space-x-8">
               <Link href="/features" className="nav-link">Features</Link>
@@ -255,7 +255,7 @@ export default function HomePage() {
           </div>
           <div className="mt-8 border-t border-gray-700 pt-8">
             <p className="text-gray-400 text-center">
-              © 2024 Geni Clone. All rights reserved.
+              © 2024 Niazi Tribe. All rights reserved.
             </p>
           </div>
         </div>

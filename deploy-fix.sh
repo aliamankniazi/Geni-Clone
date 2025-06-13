@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Geni Clone Deployment Fix Script
+# Niazi Tribe Deployment Fix Script
 # This script fixes common deployment issues
 
 set -e  # Exit on any error
@@ -28,7 +28,7 @@ warning() {
     echo -e "${YELLOW}⚠${NC} $1"
 }
 
-log "🔧 Starting Geni Clone Deployment Fix..."
+log "🔧 Starting Niazi Tribe Deployment Fix..."
 
 # Check if Docker is running
 if ! docker info > /dev/null 2>&1; then
@@ -92,17 +92,17 @@ else
 fi
 
 # Check Redis
-if docker exec geni-redis redis-cli ping > /dev/null 2>&1; then
+if docker exec niazi-redis redis-cli ping > /dev/null 2>&1; then
     success "Redis is running"
 else
     warning "Redis may not be ready yet"
 fi
 
-# Check PostgreSQL
-if docker exec geni-postgres pg_isready -U geni_user > /dev/null 2>&1; then
-    success "PostgreSQL is running"
+# Check MySQL
+if docker exec niazi-mysql mysql -u niazi_user -pniazi_password -e "SELECT 1" > /dev/null 2>&1; then
+    success "MySQL is running"
 else
-    warning "PostgreSQL may not be ready yet"
+    warning "MySQL may not be ready yet"
 fi
 
 # Check API

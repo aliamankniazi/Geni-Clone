@@ -11,7 +11,14 @@ export const config = {
   CORS_ORIGINS: process.env.CORS_ORIGINS?.split(',') || [],
   
   // Database
-  DATABASE_URL: process.env.DATABASE_URL || '',
+  // MySQL Configuration
+  MYSQL_HOST: process.env.MYSQL_HOST || 'localhost',
+  MYSQL_PORT: parseInt(process.env.MYSQL_PORT || '3306'),
+  MYSQL_DATABASE: process.env.MYSQL_DATABASE || 'niazi_tribe',
+  MYSQL_USER: process.env.MYSQL_USER || 'root',
+  MYSQL_PASSWORD: process.env.MYSQL_PASSWORD || '',
+  
+  // Neo4j Configuration
   NEO4J_URI: process.env.NEO4J_URI || '',
   NEO4J_USERNAME: process.env.NEO4J_USERNAME || 'neo4j',
   NEO4J_PASSWORD: process.env.NEO4J_PASSWORD || '',
@@ -29,13 +36,13 @@ export const config = {
   SMTP_PORT: parseInt(process.env.SMTP_PORT || '587'),
   SMTP_USER: process.env.SMTP_USER || '',
   SMTP_PASS: process.env.SMTP_PASS || '',
-  FROM_EMAIL: process.env.FROM_EMAIL || 'noreply@geni-clone.com',
+  FROM_EMAIL: process.env.FROM_EMAIL || 'noreply@niazitribe.com',
   
   // AWS S3
   AWS_REGION: process.env.AWS_REGION || 'us-east-1',
   AWS_ACCESS_KEY_ID: process.env.AWS_ACCESS_KEY_ID || '',
   AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY || '',
-  S3_BUCKET_NAME: process.env.S3_BUCKET_NAME || 'geni-clone-media',
+  S3_BUCKET_NAME: process.env.S3_BUCKET_NAME || 'niazi-tribe-media',
   
   // File uploads
   MAX_FILE_SIZE: parseInt(process.env.MAX_FILE_SIZE || '10485760'), // 10MB

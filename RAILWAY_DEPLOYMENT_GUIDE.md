@@ -1,10 +1,10 @@
-# Railway Deployment Guide for Geni Clone
+# Railway Deployment Guide for Niazi Tribe
 
-This guide explains how to deploy the Geni Clone monorepo to Railway with multiple services.
+This guide explains how to deploy the Niazi Tribe monorepo to Railway with multiple services.
 
 ## Overview
 
-Geni Clone is a **shared monorepo** containing multiple applications:
+Niazi Tribe is a **shared monorepo** containing multiple applications:
 - **API Service** (`apps/api`) - Express.js backend
 - **UI Service** (`apps/ui`) - Next.js frontend  
 - **GEDCOM Service** (`services/gedcom`) - GEDCOM processing microservice
@@ -14,7 +14,7 @@ Railway requires each service to be deployed separately for optimal performance 
 ## Prerequisites
 
 1. **Railway Account**: Sign up at [railway.app](https://railway.app)
-2. **GitHub Repository**: Your Geni Clone repository must be accessible to Railway
+2. **GitHub Repository**: Your Niazi Tribe repository must be accessible to Railway
 3. **Node.js 18+**: Ensure your project uses Node.js 18 or higher
 
 ## Deployment Options

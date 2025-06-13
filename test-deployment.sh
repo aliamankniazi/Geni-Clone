@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Geni Clone Deployment and Testing Script
+# Niazi Tribe Deployment and Testing Script
 # This script automates the deployment process and runs comprehensive tests
 
 set -e  # Exit on any error
@@ -365,7 +365,7 @@ generate_test_report() {
     log "Generating test report..."
     
     cat > test_report.md << EOF
-# Geni Clone Deployment Test Report
+# Niazi Tribe Deployment Test Report
 
 **Test Date:** $(date)
 **API URL:** $API_URL
@@ -405,7 +405,7 @@ EOF
 
 # Main execution
 main() {
-    log "Starting Geni Clone deployment testing..."
+    log "Starting Niazi Tribe deployment testing..."
     log "API URL: $API_URL"
     log "UI URL: $UI_URL"
     echo
@@ -458,7 +458,7 @@ main() {
     echo
     
     if [ $overall_status -eq 0 ]; then
-        success "🎉 All tests passed! The Geni Clone system is successfully deployed and functional."
+        success "🎉 All tests passed! The Niazi Tribe system is successfully deployed and functional."
     else
         error "Some tests failed. Please check the logs and test report for details."
         exit 1
@@ -468,7 +468,7 @@ main() {
 # Help function
 show_help() {
     cat << EOF
-Geni Clone Deployment Testing Script
+Niazi Tribe Deployment Testing Script
 
 Usage: $0 [OPTIONS]
 

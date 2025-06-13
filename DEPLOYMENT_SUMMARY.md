@@ -1,4 +1,4 @@
-# Geni Clone - Deployment Summary
+# Niazi Tribe - Deployment Summary
 
 ## 🚀 Project Status: Ready for Railway Deployment
 
@@ -31,7 +31,7 @@ This document summarizes the deployment configuration and all fixes applied to e
 ## 📁 Clean Project Structure
 
 ```
-geni-clone/
+niazi-tribe/
 ├── apps/
 │   ├── api/                    # Express.js backend
 │   │   ├── src/

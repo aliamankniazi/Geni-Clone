@@ -1,6 +1,6 @@
 export const resolvers = {
   Query: {
-    hello: () => 'Hello from Geni Clone GraphQL API!',
+    hello: () => 'Hello from Niazi Tribe GraphQL API!',
     person: async (parent: any, args: { id: string }) => {
       // TODO: Implement person retrieval
       return {
